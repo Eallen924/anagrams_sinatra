@@ -1,7 +1,10 @@
 def parse_words(filename)
-  File.open
-
+  File.readlines(filename).each do |word|
+    chomped = word.chomp
+    sorted_word = chomped.downcase.split('').sort.join('')
+    Word.create(word: chomped, sorted_word: sorted_word)
+  end
 end
 
-file = 'words.txt'
+file = "app/words.txt"
 parse_words(file)

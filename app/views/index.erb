@@ -1,23 +1,19 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
-
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+  <h1>Anagrams:</h1>
+  <form action="/anagram" method="post">
+    <input type="text" name="word" placeholder="Enter a word">
+    <input type="submit" value="Anagram it!">
+  </form>  
+  <% if @anagrams %>
+    <% if @anagrams.length < 1 %>
+    <h1>SORRY NO MATCHES!!!!!!</h1>
+    <% else %>
+    <h1> Matching Anagrams for <%= @input_word %> </h1>
+    <ul>
+      <% @anagrams.each do |word| %>
+      <li><%= word.word %></li>
+      <% end %>
+    </ul>
+    <% end %>
+  <% end %>
 </div>
